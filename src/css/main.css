@@ -29,6 +29,13 @@ html {
     text-shadow: none;
 }
 
+
+.label{
+  text-anchor: middle;
+  font-family: arial, sans-serif ;
+  font-size: 20px;
+  fill:white
+}
 /*
  * A better looking default horizontal rule
  */

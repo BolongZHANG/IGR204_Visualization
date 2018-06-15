@@ -22,12 +22,16 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-{{MODERNIZR_VERSION}}.min.js"></script>
-  <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js" integrity="{{JQUERY_SRI_HASH}}" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
+  <p>Hello world! This i a good fd d but I want have a question to do it quesitio  HTML5 Boilerplate.</p>
+  <button id = 'update'>Change</button>
+  <button id = 'add'> Add</button>
+  <button id = 'delete'>Delete</button>
+
   <script src="js/plugins.js"></script>
+  <script src="js/d3/d3.js"></script>
   <script src="js/main.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
@@ -35,6 +39,16 @@
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  <div id='map' style='width: 400px; height: 300px;'></div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiemh1ZmFuZ2RhIiwiYSI6ImNqaTAyZGJidjB4dXYzcG52enZoeXVrbjQifQ.L5ctcg-MAcDI9-GIfHkobg';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v10'
+    });
+  </script>
+
+
 </body>
 
 </html>
