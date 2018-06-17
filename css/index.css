@@ -16,3 +16,7 @@ body {
 	width:300px;
 	height:100%;
 }
+
+.test {
+	font-family: 'Courier New', Courier, monospace;
+}
