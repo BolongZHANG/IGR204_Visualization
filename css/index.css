@@ -17,6 +17,17 @@ body {
 	height:100%;
 }
 
-.test {
-	font-family: 'Courier New', Courier, monospace;
+#histogram {
+	width: 600px;
+	height: 250px;
+}
+
+.country-label {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 10px;
+	fill: green;
+}
+
+.svg {
+	width: 100%;
 }

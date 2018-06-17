@@ -17,29 +17,38 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/index.css" rel="stylesheet">
+	<script type="text/javascript" src="js/d3/d3.min.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<!-- Popper -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
 </head>
 
 <body>
+
 	<div id="side_navbar">
 	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div id="graph-col" class="col-lg-12">
+				<div id="dropdown-activities" class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">Choose an activity
+					<span class="caret"></span></button>
+					<ul id="dropdown-list" class="dropdown-menu"></ul>
+				</div>
+				<div id="activity-graph"></div>
+			</div>
+		</div>
+	</div>
 
-	
-</body>
-<script type="text/javascript" src="js/d3/d3.min.js"></script>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<!-- Popper -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
- crossorigin="anonymous"></script>
- <!-- Plotly : JS plotting library -->
-<script type="text/javascript" src="js/plotly-latest.min.js"></script>
-<!-- Project scripts-->
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/load.js"></script>
-<script type="text/javascript" src="js/ptime-graph.js"></script>
-
+	<!-- Project scripts-->
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/load.js"></script>
+	<script type="text/javascript" src="js/ptime-graph.js"></script>
 </body>
 
 </html>
