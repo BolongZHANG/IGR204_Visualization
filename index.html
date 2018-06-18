@@ -30,20 +30,50 @@
 <body>
 
 	<div id="side_navbar">
-	</div>
-	<div class="container-fluid">
-		<div class="row">
-			<div id="graph-col" class="col-lg-12">
-				<div id="dropdown-activities" class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button"
-					data-toggle="dropdown">Choose an activity
-					<span class="caret"></span></button>
-					<ul id="dropdown-list" class="dropdown-menu"></ul>
+		
+		<div class="side_navbar_elements">
+			<ul class="nav nav-tabs nav-justified" role="tablist">
+				<li id="time_spent_li" class="active"><a>Time spent</a></li>
+				<li id="participation_time_li"><a>Participation time</a></li>
+			</ul>
+		</div>
+		
+		<div id="div-dropdown-ts" class="container-fluid side_navbar_elements">	
+			
+			<!-- drop down activities -->
+			<div class="row">
+				<div id="graph-col-ts" class="col-md-12">
+					<div id="dropdown-activities-ts" class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+							Choose an activity
+							<span class="caret"></span>
+						</button>
+						<ul id="dropdown-list-ts" class="dropdown-menu"></ul>
+					</div>
+					<div id="activity-graph-ts"></div>
 				</div>
-				<div id="activity-graph"></div>
 			</div>
+			
+		</div>
+		
+		<div id="div-dropdown-pt" class="container-fluid side_navbar_elements">
+			
+			<div class="row">
+				<div id="graph-col" class="col-md-12">
+					<div id="dropdown-activities" class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+							Choose an activity
+							<span class="caret"></span>
+						</button>
+						<ul id="dropdown-list" class="dropdown-menu"></ul>
+					</div>
+					<div id="activity-graph"></div>
+				</div>
+			</div>
+			
 		</div>
 	</div>
+	
 
 	<!-- Project scripts-->
 	<script type="text/javascript" src="js/index.js"></script>

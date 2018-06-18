@@ -1,11 +1,16 @@
-const graphMargin = 50, labelsMargin = 20;
-const circlesRadius = 10;
+let graphMargin = 50, labelsMargin = 20;
+let circlesRadius = 10;
 let dropdownList = d3.select("#dropdown-list");
 let svg;
 let xScale, yScale;
 let h = 600, w = 600;
 
 function createNewSvg() {
+	h = $("#activity-graph").width();
+	w = h;
+	circlesRadius = h / 60;
+	graphMargin = h / 12;
+	labelsMargin = h / 30;
     svg = d3.select("#activity-graph")
     .append("svg")
     .attr("height", h)
