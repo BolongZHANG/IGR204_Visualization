@@ -1,0 +1,33 @@
+html {
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	margin: 0px;
+	min-height: 100%;
+	width: 100%;
+}
+
+#side_navbar
+{
+	position:fixed;
+	width:300px;
+	height:100%;
+}
+
+#histogram {
+	width: 600px;
+	height: 250px;
+}
+
+.country-label {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 10px;
+	fill: green;
+}
+
+.svg {
+	width: 100%;
+}
