@@ -39,6 +39,7 @@ d3.csv("data/data.csv", function (error, data) {
     }
   }
   setupGraph();
+  plotGraphActivity("Sleep");
 });
 
 

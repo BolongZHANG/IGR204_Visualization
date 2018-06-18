@@ -7,7 +7,7 @@ let GRAPHh = 600, GRAPHw = 600;
 
 function createNewGRAPHsvg() {
     GRAPHsvg = d3.select("#activity-graph")
-    .append("GRAPHsvg")
+    .append("svg")
     .attr("height", GRAPHh)
     .attr("width", GRAPHw);
 }
