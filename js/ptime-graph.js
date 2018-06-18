@@ -18,7 +18,7 @@ function setupGraph() {
                     .append("a")
                     .property("href", "#")
                     .property("id", i)
-                    .on("click", plotGraphActivity)
+                    .on("click", plotGraphActivityFromDropdown)
                     .text(activities[i]);
     }
     createNewSvg();
@@ -40,11 +40,9 @@ function clearGraph() {
     createNewSvg();
 }
 
-function plotGraphActivity() {
+function plotGraphActivity(activity) {
     clearGraph();
 
-    let id = d3.select(this).attr("id");
-    let activity = activities[id];
     let pRates = [], pTimes = [], participants = [];
     for(country of countries) {
         const pRate = getParticipationRate(country, activity);
@@ -55,8 +53,6 @@ function plotGraphActivity() {
             participants.push(country);
         }
     }
-    console.log(pRates);
-    console.log(pTimes);
     xScale = d3.scaleLinear()
                .domain(d3.extent(pRates))
                .range([graphMargin, w-graphMargin]);
@@ -89,4 +85,10 @@ function plotGraphActivity() {
     svg.append("g")
         .attr("class", "y axis")
         .call(d3.axisRight(yScale));
+}
+
+function plotGraphActivityFromDropdown() {
+    let id = d3.select(this).attr("id");
+    let activity = activities[id];
+    plotGraphActivity(activity);
 }
