@@ -1,15 +1,15 @@
-const graphMargin = 50, labelsMargin = 20;
-const circlesRadius = 10;
+const GRAPHm = 50, LABELSm = 20;
+const CIRCLESr = 10;
 let dropdownList = d3.select("#dropdown-list");
-let svg;
-let xScale, yScale;
-let h = 600, w = 600;
+let GRAPHsvg;
+let graphXScale, graphYScale;
+let GRAPHh = 600, GRAPHw = 600;
 
-function createNewSvg() {
-    svg = d3.select("#activity-graph")
-    .append("svg")
-    .attr("height", h)
-    .attr("width", w);
+function createNewGRAPHsvg() {
+    GRAPHsvg = d3.select("#activity-graph")
+    .append("GRAPHsvg")
+    .attr("height", GRAPHh)
+    .attr("width", GRAPHw);
 }
 
 function setupGraph() {   
@@ -21,7 +21,7 @@ function setupGraph() {
                     .on("click", plotGraphActivityFromDropdown)
                     .text(activities[i]);
     }
-    createNewSvg();
+    createNewGRAPHsvg();
 }
 
 function getParticipationRate(country, activity) {
@@ -36,8 +36,8 @@ function getParticipationTime(country, activity) {
 }
 
 function clearGraph() {
-    svg.remove();
-    createNewSvg();
+    GRAPHsvg.remove();
+    createNewGRAPHsvg();
 }
 
 function plotGraphActivity(activity) {
@@ -53,38 +53,38 @@ function plotGraphActivity(activity) {
             participants.push(country);
         }
     }
-    xScale = d3.scaleLinear()
+    graphXScale = d3.scaleLinear()
                .domain(d3.extent(pRates))
-               .range([graphMargin, w-graphMargin]);
-    yScale = d3.scaleLinear()
+               .range([GRAPHm, GRAPHw-GRAPHm]);
+    graphYScale = d3.scaleLinear()
                .domain(d3.extent(pTimes))
-               .range([h-graphMargin, graphMargin]);
-    svg.selectAll("circle")
+               .range([GRAPHh-GRAPHm, GRAPHm]);
+    GRAPHsvg.selectAll("circle")
                .data(participants)
                .enter()
                .append("circle")
                .attr("id", (p) => p)
-               .attr("r", circlesRadius)
-               .attr("cx", (p) => xScale(getParticipationRate(p, activity)))
-               .attr("cy", (p) => yScale(getParticipationTime(p, activity)));
-    svg.selectAll("text")
+               .attr("r", CIRCLESr)
+               .attr("cx", (p) => graphXScale(getParticipationRate(p, activity)))
+               .attr("cy", (p) => graphYScale(getParticipationTime(p, activity)));
+    GRAPHsvg.selectAll("text")
         .data(participants)
         .enter()
         .append("text")
         .text((p) => p)
-        .attr("x", (p) => xScale(getParticipationRate(p, activity)))
+        .attr("x", (p) => graphXScale(getParticipationRate(p, activity)))
         .attr("y", function(p) {
-            let y = yScale(getParticipationTime(p, activity));
-            return y + labelsMargin;
+            let y = graphYScale(getParticipationTime(p, activity));
+            return y + LABELSm;
         })
         .attr("class", () => "country-label");
-    svg.append("g")
+    GRAPHsvg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0, " + (h-graphMargin) + ")")
-        .call(d3.axisTop(xScale));
-    svg.append("g")
+        .attr("transform", "translate(0, " + (GRAPHh-GRAPHm) + ")")
+        .call(d3.axisTop(graphXScale));
+    GRAPHsvg.append("g")
         .attr("class", "y axis")
-        .call(d3.axisRight(yScale));
+        .call(d3.axisRight(graphYScale));
 }
 
 function plotGraphActivityFromDropdown() {

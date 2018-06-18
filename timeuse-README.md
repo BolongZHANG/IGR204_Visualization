@@ -24,3 +24,14 @@ In order to display data of participant countries of a given `activity`, just ca
 plotGraphActivity(activity);
 ```
 
+### Get or set graph settings
+```js
+// Sets the graph axis margins into svg box
+GRAPHm = value;
+// Sets the country labels vertical relative position according to the circles
+LABELSm = value;
+// Gets a reference to the svg component containing the graph
+let svg = GRAPHsvg;
+// Store the graph height and width
+let height = GRAPHh, width = GRAPHw;
+```
