@@ -31,7 +31,7 @@ participation_time_li.addEventListener("click" , function(){
 function add_activity_ts(name)
 {
 	var colDiv = '<div style="white-space:nowrap;overflow:hidden" class="col-md-9">' + name + '</div>';
-	var check = '<div class="col-md-1"><input type="checkbox"></div>';
+	var check = '<div class="col-md-1"><input type="checkbox" checked></div>';
 	var bin = '<div class="col-md-1"><span class="fa fa-trash"></span></div>';
 	
 	var div = '<div class="row selected_activities_list_ts">' + colDiv + check + bin + '</div>';
@@ -78,12 +78,12 @@ function create_list_activities_ts()
                     .append("a")
                     .property("href", "#")
                     .property("id", i + " ts")
-                    .on("click", on_itemClicked_list_activities_pt)
+                    .on("click", on_itemClicked_list_activities_ts)
                     .text(activities[i]);
     }
 }
 
-function on_itemClicked_list_activities_pt()
+function on_itemClicked_list_activities_ts()
 {
 	let id = d3.select(this).attr("id");
 	id = id.split(" ");
@@ -117,12 +117,12 @@ function create_list_activities_pt()
                     .append("a")
                     .property("href", "#")
                     .property("id", i + " pt")
-                    .on("click", on_itemClicked_list_activities_ts)
+                    .on("click", on_itemClicked_list_activities_pt)
                     .text(activities[i]);
     }
 }
 
-function on_itemClicked_list_activities_ts()
+function on_itemClicked_list_activities_pt()
 {
 	let id = d3.select(this).attr("id");
 	id = id.split(" ");
@@ -136,6 +136,7 @@ function on_itemClicked_list_activities_ts()
 	button.innerHTML = '<div class="row">' + divActivity + divCaret + '</div>';
 	
 	/* graph participation time / participation rate */
+	
     plotGraphActivity(activity);
 }
 
@@ -143,4 +144,12 @@ function init_index_html()
 {
 	document.getElementById("div-dropdown-pt").
 		setAttribute("style" ,"display:none");
+		
+	activity = "Sleep";
+	var button = document.getElementById("button_activity_pt");
+	
+	var divActivity ='<div style="overflow:hidden" class="col-md-9">' + activity + '</div>';
+	var divCaret = '<div class="col-md-3"></span><span class="caret"></span></div>';
+	
+	button.innerHTML = '<div class="row">' + divActivity + divCaret + '</div>';
 }
