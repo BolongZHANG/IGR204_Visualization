@@ -13,6 +13,8 @@ let mapData
 let userData
 
 
+let activities_list = ["Personal care", "Other and/or unspecified personal care"]
+
 function changeAction(){
   createMap(mapData, userData)
 }
@@ -158,6 +160,14 @@ function createMap(_mapData, _userData){
 }
 
 
+function updatePies(activiesList){
+  
+  let arc = d3.svg
+    .arc()
+    .
+
+
+
 
 
 
@@ -224,3 +234,9 @@ function pRateTips(d){
   }
   //
 }
+
+
+function updatePies(activiesList){
+  traitPieData(activiesList)
+}
+
