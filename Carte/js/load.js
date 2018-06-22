@@ -4,8 +4,7 @@ let dataset = new Map();
 
 
 
-d3.csv("data/label.csv")
-  .then(label => {
+d3.csv("data/label.csv" , label => {
     for (let i = 13; i < 34; i++) {
       countries.push(label[i]["DATASET: Time spent, participation time and participation rate in the main activity by sex and day of the week [tus_00week]"]);
     };
@@ -23,8 +22,7 @@ d3.csv("data/label.csv")
     }
 
 
-    d3.csv("data/TimeUseData.csv")
-      .then(data => {
+    d3.csv("data/TimeUseData.csv", data => {
         for (let i = 0; i < data.length; i++) {
           let l = data[i]
           if ((l.DAYSWEEK === "All days of the week") && (l.SEX === "Total")) {
@@ -41,10 +39,11 @@ d3.csv("data/label.csv")
           }
         }
 
-        setSelector()
-        loadMap()
-
-
-
-      });
+        setSelector(activities)
+        // loadMap(dataset)）
+        loadMap(dataset)
+     });
   });
+
+
+

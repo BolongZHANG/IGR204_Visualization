@@ -6,8 +6,7 @@ let activity_selector = d3.select('body')
   .attr('id', 'activities')
   .attr('onchange', 'changeAction')
 
-function setSelector(){
-  document.getElementById("activities").onchange = function() {changeAction()};
+function setSelector(activities){
   activity_selector.selectAll('option')
     .data(activities)
     .enter()
@@ -20,18 +19,16 @@ function setSelector(){
 }
 
 let carte_width = 800
-let carte_height = 900
+let carte_height = 600
 
-let projection = d3.geoAzimuthalEquidistant()
-    .translate([800/2, 600/2])
-    .scale([500]);
+let projection
 
-let path = d3.geoPath(projection)
+let path
 
 let svg_map = d3.select('body')
     .append('svg')
-    .attr('width', 800)
-    .attr('height', 600)
+    .attr('width', carte_width)
+    .attr('height', carte_height)
     .attr('id', 'map')
 
 
@@ -41,6 +38,9 @@ let map_legend = svg_map.append("g")
 
 let map_content= svg_map.append("g")
     .attr("id", "map")
+
+let pie = svg_map.append("g")
+  .attr("id", "pies")
 
 let pTime
 let pRate
@@ -122,7 +122,7 @@ function getParticipationTimeMap(activity) {
 
     scaleC = d3.scaleThreshold()
       .domain(d3.range(9).map(function(d) { return minPTime + d*(maxPTime - minPTime) / 8 ; }))
-      .range(d3.schemeBlues[9])
+      .range(colorbrewer["Blues"][9])
   }
 
   function getColor(d){
@@ -134,12 +134,13 @@ function getParticipationTimeMap(activity) {
 
   function updateMap(activity) {
     updateMapScale(activity)
-    let countryEnter = map_content.selectAll('g')
+    let countryEnter = map_content.selectAll('.country')
       .data(map_json.features, d => {
         return d.properties.NAME
       })
       .enter()
       .append('g')
+      .append('class', 'country')
 
     countryEnter.append('path')
       .attr('d', path)
@@ -147,7 +148,6 @@ function getParticipationTimeMap(activity) {
       .attr('stroke', 'black')
       .attr('stroke-width', 1)
       .attr('fill', d => getColor(d))
-      .attr("transform", "translate(0,300)")
 
     countryEnter.append('title')
       .text((d) => pRateTips(d))
@@ -157,10 +157,22 @@ function getParticipationTimeMap(activity) {
       .transition()
       .duration(1000)
       .attr('fill', d => getColor(d))
-      .attr("transform", "translate(0,300)")
 
     map_content.selectAll('title')
       .text((d) => pRateTips(d))
+
+
+    pie.selectAll("circle")
+      .data(map_json.features,)
+      .enter()
+      .append("circle")
+      .attr('transform', (d)=> {
+        const centroid = path.centroid(d)
+        return `translate(${centroid[0]}, ${centroid[1]})`
+      })
+      .attr("r", 5)
+      .style("fill", "yellow")
+      .style("opacity", 0.75);
     // map_legend.selectAll("rect")
     //   .data(scaleC.range().map(function(d) {
     //     console.log("Legend:", d)
@@ -180,9 +192,16 @@ function getParticipationTimeMap(activity) {
     function loadMap() {
     let activity = getActivity()
     console.log('drawMap:Activity', activity)
-    d3.json('data/europe.json').then(function (json) {
+    d3.json('data/europe.json', function (json) {
       map_json = json
+      projection = d3.geoMercator()
+        .fitSize([carte_width, carte_height], json);
+
       console.log("Loading map data:", json.features)
+
+      path = d3.geoPath()
+        .projection(projection);
+
       updateMap(activity)
     })
   }
