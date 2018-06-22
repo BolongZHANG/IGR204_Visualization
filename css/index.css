@@ -14,9 +14,16 @@ body {
 {
 	position:fixed;
 	width:300px;
+	margin:0px;
 	height:100%;
 	background-color: #f1f1f1;
 	box-shadow:2px 2px 5px grey;
+	overflow:scroll;
+}
+
+#page_content
+{
+	margin-left:305px;
 }
 
 .side_navbar_elements
