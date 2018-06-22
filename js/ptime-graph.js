@@ -1,33 +1,21 @@
 let GRAPHm = 50, LABELSm = 20;
 let CIRCLESr = 10;
 
-let dropdownList = d3.select("#dropdown-list");
+let dropdownList = d3.select("#dropdown-list-pt");
 let GRAPHsvg;
 let graphXScale, graphYScale;
 let GRAPHh = 600, GRAPHw = 600;
 
 function createNewGRAPHsvg() {
-    GRAPHh = $("#activity-graph").width();
+    GRAPHh = $("#activity-graph-pt").width();
 	GRAPHw = GRAPHh;
 	CIRCLESr = GRAPHh / 60;
 	GRAPHm = GRAPHh / 12;
 	LABELSm = GRAPHh / 30;
-    GRAPHsvg = d3.select("#activity-graph")
+    GRAPHsvg = d3.select("#activity-graph-pt")
     .append("svg")
     .attr("height", GRAPHh)
     .attr("width", GRAPHw);
-}
-
-function setupGraph() {   
-    for (let i=0; i < activities.length; ++i) {
-        dropdownList.append("li")
-                    .append("a")
-                    .property("href", "#")
-                    .property("id", i)
-                    .on("click", plotGraphActivityFromDropdown)
-                    .text(activities[i]);
-    }
-    createNewGRAPHsvg();
 }
 
 function getParticipationRate(country, activity) {
@@ -91,10 +79,4 @@ function plotGraphActivity(activity) {
     GRAPHsvg.append("g")
         .attr("class", "y axis")
         .call(d3.axisRight(graphYScale));
-}
-
-function plotGraphActivityFromDropdown() {
-    let id = d3.select(this).attr("id");
-    let activity = activities[id];
-    plotGraphActivity(activity);
 }

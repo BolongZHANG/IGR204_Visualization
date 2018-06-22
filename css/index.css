@@ -31,7 +31,7 @@ body {
 	margin:5px;
 }
 
-#dropdown-activities button
+#dropdown-activities-pt button
 {
 	width:100%;
 } 
@@ -64,4 +64,8 @@ body {
 
 .svg {
 	width: 100%;
+}
+
+button{
+	overflow:hidden;
 }

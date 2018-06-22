@@ -38,8 +38,9 @@ d3.csv("data/data.csv", function (error, data) {
       }
     }
   }
-  setupGraph();
-  plotGraphActivity("Sleep");
+	create_list_activities_ts();
+	create_list_activities_pt();	
+	createNewGRAPHsvg();
 });
 
 
