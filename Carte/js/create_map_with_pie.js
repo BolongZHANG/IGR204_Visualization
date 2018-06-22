@@ -161,7 +161,7 @@ function createMap(_mapData, _userData){
 
 
 function updatePies(activiesList){
-  
+
   let arc = d3.svg
     .arc()
     .
