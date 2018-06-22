@@ -49,6 +49,11 @@ function add_activity_ts(name)
 				selectedActivitiesTs.splice(i,1);
 			
 		element.parent().parent().remove();
+	});
+	
+	// click on checkbox
+	lastActivities.children[1].children[0].addEventListener("click" , function(event){
+		console.log( get_checked_activities() );
 	});	
 }
 
