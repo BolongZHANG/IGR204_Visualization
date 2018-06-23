@@ -2,34 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b584bbc7-6c10-4949-8af1-273c1b28fcbc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/CODE_OF_CONDUCT.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/CONTRIBUTING.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/ISSUE_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/SUPPORT.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.jscsrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.travis/github_deploy_key.enc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/create_map_with_pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/create_map_with_pie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/load.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WebExercice.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../get-pip.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gulpfile.babel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../modernizr-config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../timeuse-README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/create_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/create_map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js/create_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/create_map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js/d3/d3.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js/ptime-graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/ptime-graph.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,20 +23,20 @@
     <splitter split-orientation="horizontal" split-proportion="0.52796936">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="17" column="49" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="49" />
+                <state relative-caret-position="-43">
+                  <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="create_map.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="create_map.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/create_map.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="159" selection-start-line="159" selection-end-line="159" />
+                <state relative-caret-position="-740">
+                  <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
                 </state>
               </provider>
             </entry>
@@ -66,8 +44,8 @@
           <file leaf-file-name="create_map_with_pie.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/create_map_with_pie.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2686">
-                  <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
+                <state relative-caret-position="-136">
+                  <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
                 </state>
               </provider>
             </entry>
@@ -79,8 +57,8 @@
           <file leaf-file-name="carte.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/carte.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-12">
-                  <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+                <state relative-caret-position="146">
+                  <caret line="19" selection-start-line="19" selection-end-line="19" />
                 </state>
               </provider>
             </entry>
@@ -137,8 +115,8 @@
         <option value="$PROJECT_DIR$/js/carte.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/load.js" />
-        <option value="$PROJECT_DIR$/js/create_map.js" />
         <option value="$PROJECT_DIR$/js/create_map_with_pie.js" />
+        <option value="$PROJECT_DIR$/js/create_map.js" />
       </list>
     </option>
   </component>
@@ -158,10 +136,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-1088" />
-    <option name="width" value="782" />
-    <option name="height" value="871" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1098" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -276,10 +254,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44413000" />
+    <option name="totallyTimeSpent" value="45914000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-1088" width="1936" height="1096" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -292,13 +270,13 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49435666" visible="true" weight="0.09968017" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49435666" visible="true" weight="0.12533513" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info id="Learn" order="2" />
       <window_info id="Structure" order="1" sideWeight="0.5013477" side_tool="true" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" sideWeight="0.50564337" side_tool="true" weight="0.25670242" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.25496343" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.32928476" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -707,29 +685,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/carte.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/create_map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="159" selection-start-line="159" selection-end-line="159" />
+        <state relative-caret-position="146">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/create_map_with_pie.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2686">
-          <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
+        <state relative-caret-position="-136">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="49" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="49" />
+        <state relative-caret-position="-43">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/create_map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-740">
+          <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
         </state>
       </provider>
     </entry>

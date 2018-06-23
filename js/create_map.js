@@ -42,39 +42,50 @@ function getParticipationTimeMap (activity) {
   return pTimeMap
 }
 
-// Get Participation Rate for the specified activity
-// function getSpentTimeMap (activities) {
-//   let sTimeMap = new Map()
-//   for (let country of countries) {
-//     for(let activities of countriues)
-//     let str = String(dataset.get(country).get(activity).timeSpent)
-//     let splittedStr = str.split(':')
-//     let hh = parseInt(splittedStr[0]), mm = parseInt(splittedStr[1])
-//     sTimeMap[country] = hh + mm / 60.0
-//   }
-//   return sTimeMap
-// }
 
-// // load the data, find the svg container in the dom,
-// // and call createMap
-// function setSelector (activities) {
-//   let activity_selector = d3.select('body')
-//     .append('select')
-//     .attr('id', 'activities')
-//     .attr('onchange', 'changeAction')
+//Get spent time for the specified activity
+function getSpentTimeMap (activities) {
+  let sTimeMap = new Map()
+  for (let country of countries) {
+    sTimeMap[country] = []
+    for(let activity of activities){
+      let str = String(dataset.get(country).get(activity).timeSpent)
+      let splittedStr = str.split(':')
+      let hh = parseInt(splittedStr[0]),
+      mm = parseInt(splittedStr[1]
+      sTimeMap[country].push( 
+        { "activitiy":activity,
+          "value": hh + mm / 60.0
+        }
+      )
+    }
+  }
 
-//   console.log('Set selector:' + activities)
-//   document.getElementById('activities').onchange = function () { changeAction() }
-//   activity_selector.selectAll('option')
-//     .data(activities)
-//     .enter()
-//     .append('option')
-//     .attr('value', d => d)
-//     .text(d => d)
-//     .on('click', function () {
-//       console.log('selector', this)
-//     })
-// }
+
+  consloe.log("getSpentTimeMap(): Get activities List:" + sTimeMap)
+  return sTimeMap
+}
+
+// load the data, find the svg container in the dom,
+// and call createMap
+function setSelector (activities) {
+  let activity_selector = d3.select('body')
+    .append('select')
+    .attr('id', 'activities')
+    .attr('onchange', 'changeAction')
+
+  console.log('Set selector:' + activities)
+  document.getElementById('activities').onchange = function () { changeAction() }
+  activity_selector.selectAll('option')
+    .data(activities)
+    .enter()
+    .append('option')
+    .attr('value', d => d)
+    .text(d => d)
+    .on('click', function () {
+      console.log('selector', this)
+    })
+}
 
 function loadMap (dataset, activity) {
   console.log('Start to load map to :', svg_map)
@@ -197,5 +208,7 @@ function pRateTips (d) {
 }
 
 function createTimeSpentMap (activites) {
+  let spentTime = getSpentTimeMap(activites)
+  
 
 }

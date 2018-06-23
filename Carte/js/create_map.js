@@ -159,9 +159,6 @@ function createMap(_mapData, _userData){
 
 
 
-
-
-
   // append labels
   pieContainer
     .selectAll('.pie')
