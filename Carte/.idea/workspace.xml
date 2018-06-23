@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b584bbc7-6c10-4949-8af1-273c1b28fcbc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/create_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/create_map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/create_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/create_map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/d3/d3.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/ptime-graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/ptime-graph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js/create_map_pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/create_map_pie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js/load-tim.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/load-tim.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,8 +53,8 @@
           <file leaf-file-name="carte.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/carte.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="146">
-                  <caret line="19" selection-start-line="19" selection-end-line="19" />
+                <state relative-caret-position="248">
+                  <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
@@ -254,7 +250,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45914000" />
+    <option name="totallyTimeSpent" value="47113000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -683,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/carte.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/create_map_with_pie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-136">
@@ -708,6 +697,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-740">
           <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/carte.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
         </state>
       </provider>
     </entry>
