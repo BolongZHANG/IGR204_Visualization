@@ -27,7 +27,7 @@
 	crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onresize="on_body_resize()">
 
 	<div id="side_navbar">
 		
@@ -74,11 +74,14 @@
 		</div>
 	</div>
 	
-	<div id="page_content">
-		<svg id="map-container" width="900", height="500"></svg>
+	<div id="map_ts">
 		
 	</div>
 	
+	<div id="map_pt">
+		<svg id="map-container"> </svg>
+	</div>
+		
 	<div id="zoom_div">
 	
 	</div>
@@ -86,13 +89,12 @@
 	
 	<!-- Project scripts-->
 	<script type="text/javascript" src="js/index.js"></script>
+	<script src="js/load-carte.js"></script>
 	<script type="text/javascript" src="js/ptime-graph.js"></script>
 
 	<script src="http://d3js.org/colorbrewer.v1.min.js"></script>	
 	<script src="js/create_map.js"></script>
-	<script src="js/load-carte.js"></script>
 	
-
 </body>
 
 </html>

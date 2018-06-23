@@ -1,3 +1,4 @@
+var last_activity_pt = "Sleep";
 
 /* selectected activities fro time spent */
 var selectedActivitiesTs = [];
@@ -15,6 +16,10 @@ time_spent_li.addEventListener("click" , function(){
 		setAttribute("style" ,"display:block");
 	document.getElementById("div-dropdown-pt").
 		setAttribute("style" ,"display:none");
+	document.getElementById("map_pt")
+	.setAttribute('style', 'display:none');
+	document.getElementById("map_ts")
+	.setAttribute('style', 'display:block');
 });
 
 
@@ -26,6 +31,11 @@ participation_time_li.addEventListener("click" , function(){
 		setAttribute("style" ,"display:none");
 	document.getElementById("div-dropdown-pt").
 		setAttribute("style" ,"display:block");
+	document.getElementById("map_pt")
+	.setAttribute('style', 'display:block');
+	on_body_resize();
+	document.getElementById("map_ts")
+	.setAttribute('style', 'display:none');
 });
 
 function add_activity_ts(name)
@@ -131,7 +141,7 @@ function on_itemClicked_list_activities_pt () {
   var divCaret = '<div class="col-md-3"></span><span class="caret"></span></div>'
 
   button.innerHTML = '<div class="row">' + divActivity + divCaret + '</div>'
-
+last_activity_pt = activity;
   /* graph participation time / participation rate */
 
   plotGraphActivity(activity)
@@ -141,12 +151,50 @@ function on_itemClicked_list_activities_pt () {
 function init_index_html () {
   document.getElementById('div-dropdown-pt')
     .setAttribute('style', 'display:none')
+  document.getElementById("map_pt")
+	.setAttribute('style', 'display:none');
 
-  activity = 'Sleep'
+  handle_map_size();
+	
+  var activity = 'Sleep'
   var button = document.getElementById('button_activity_pt')
 
   var divActivity = '<div style="overflow:hidden" class="col-md-9">' + activity + '</div>'
   var divCaret = '<div class="col-md-3"></span><span class="caret"></span></div>'
 
   button.innerHTML = '<div class="row">' + divActivity + divCaret + '</div>'
+}
+
+function handle_map_size()
+{
+	var width = $("#map-container").parent().width();
+	var height = $("#map-container").parent().height();
+	
+	if( Math.min( width , height ) == height )
+	{
+		$("#map-container").attr("width" , height );
+		$("#map-container").attr("height" , height );
+		var diff = width - height;
+		$("#map-container").attr("style" , "margin-left:" +  (diff / 2) + ";margin-right:" + (diff / 2) );
+	}
+	else
+	{
+		$("#map-container").attr("width" , width );
+		$("#map-container").attr("height" , width );
+		var diff = height - width;
+		$("#map-container").attr("style" , "margin-top:" +  (diff / 2) + ";margin-bottom:" + (diff / 2) );
+	}
+}
+
+function on_body_resize(){
+	handle_map_size();
+	$("#map-container").children().remove();
+	mapContainer = svg_map
+  .append('g')
+  .attr('id', 'map')
+
+	pieContainer = svg_map
+  .append('g')
+  .attr('id', 'pies')
+	loadMap(dataset, last_activity_pt);
 }

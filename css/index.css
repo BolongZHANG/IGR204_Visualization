@@ -21,9 +21,16 @@ body {
 	overflow:scroll;
 }
 
-#page_content
+#map_pt
 {
 	margin-left:305px;
+	height: 98vh;
+}
+
+#map_ts
+{
+	margin-left:305px;
+	height: 98vh;
 }
 
 .side_navbar_elements
