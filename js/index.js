@@ -1,3 +1,5 @@
+var currentMode = "ts";
+
 var last_activity_pt = "Sleep";
 
 /* selectected activities fro time spent */
@@ -16,10 +18,9 @@ time_spent_li.addEventListener("click" , function(){
 		setAttribute("style" ,"display:block");
 	document.getElementById("div-dropdown-pt").
 		setAttribute("style" ,"display:none");
-	document.getElementById("map_pt")
-	.setAttribute('style', 'display:none');
-	document.getElementById("map_ts")
-	.setAttribute('style', 'display:block');
+		
+	createPieMap(get_checked_activities());
+	currentMode = "ts";
 });
 
 
@@ -31,11 +32,11 @@ participation_time_li.addEventListener("click" , function(){
 		setAttribute("style" ,"display:none");
 	document.getElementById("div-dropdown-pt").
 		setAttribute("style" ,"display:block");
-	document.getElementById("map_pt")
-	.setAttribute('style', 'display:block');
-	on_body_resize();
-	document.getElementById("map_ts")
-	.setAttribute('style', 'display:none');
+	on_body_resize()
+	createPTMap(last_activity_pt);
+	plotGraphActivity(last_activity_pt);
+	currentMode = "pt"
+	
 });
 
 function add_activity_ts(name)
@@ -59,6 +60,9 @@ function add_activity_ts(name)
 				selectedActivitiesTs.splice(i,1);
 			
 		element.parent().parent().remove();
+		
+		createPieMap( get_checked_activities() )
+		createGrapheTimeSpent(get_checked_activities());
 	});
 	
 	// click on checkbox
@@ -114,7 +118,12 @@ function add_activity_to_selected_activities (activity) {
     }
   }
 
-  if (!isInSelectedActivities) { add_activity_ts(activity) }
+  if (!isInSelectedActivities) 
+  { 
+	add_activity_ts(activity) ; 
+	createPieMap( get_checked_activities() );
+	createGrapheTimeSpent(get_checked_activities());	
+	}
 }
 
 /* create the activities list for participation time */
@@ -145,15 +154,14 @@ last_activity_pt = activity;
   /* graph participation time / participation rate */
 
   plotGraphActivity(activity)
-  createMap(activity)
+  createPTMap(activity)
 }
 
 function init_index_html () {
   document.getElementById('div-dropdown-pt')
     .setAttribute('style', 'display:none')
-  document.getElementById("map_pt")
-	.setAttribute('style', 'display:none');
 
+	add_activity_to_selected_activities("Sleep");
   handle_map_size();
 	
   var activity = 'Sleep'
@@ -174,6 +182,8 @@ function handle_map_size()
 	{
 		$("#map-container").attr("width" , height );
 		$("#map-container").attr("height" , height );
+		$("#map-container").children().first().attr("height" , height );
+		$("#map-container").children().first().attr("width" , height );
 		var diff = width - height;
 		$("#map-container").attr("style" , "margin-left:" +  (diff / 2) + ";margin-right:" + (diff / 2) );
 	}
@@ -181,20 +191,24 @@ function handle_map_size()
 	{
 		$("#map-container").attr("width" , width );
 		$("#map-container").attr("height" , width );
+		$("#map-container").children().first().attr("height" , width );
+		$("#map-container").children().first().attr("width" , width );
 		var diff = height - width;
 		$("#map-container").attr("style" , "margin-top:" +  (diff / 2) + ";margin-bottom:" + (diff / 2) );
 	}
 }
 
 function on_body_resize(){
-	handle_map_size();
+	/*handle_map_size();
 	$("#map-container").children().remove();
-	mapContainer = svg_map
+	mapContainer = svgMap
   .append('g')
   .attr('id', 'map')
 
-	pieContainer = svg_map
+	pieContainer = svgMap
   .append('g')
   .attr('id', 'pies')
-	loadMap(dataset, last_activity_pt);
+  loadMap(dataset, currentMode);*/
+  /*handle_map_size();
+  createPieMap(get_checked_activities());*/
 }

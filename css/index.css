@@ -21,13 +21,7 @@ body {
 	overflow:scroll;
 }
 
-#map_pt
-{
-	margin-left:305px;
-	height: 98vh;
-}
-
-#map_ts
+#page_content
 {
 	margin-left:305px;
 	height: 98vh;
