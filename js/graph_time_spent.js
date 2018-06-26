@@ -21,7 +21,7 @@ function add(time1, time2) {
 function createGrapheTimeSpent(Checked_activities) {
 	
 	$("#activity-graph-ts").children().remove();
-  var svgWidth = $("#side_navbar").width();
+  var svgWidth = 600;
   var svgHeight = svgWidth * 0.6;
 
   var map = new Map();

@@ -57,6 +57,11 @@ body {
 	height: 250px;
 }
 
+#activity-graph-ts
+{
+	overflow-x:scroll;
+}
+
 .country-label {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-size: 12px;
