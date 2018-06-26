@@ -195,12 +195,10 @@ function handle_map_size () {
 
 function on_body_resize () {
 
+    resizeCate()
     if( currentMode == 'ts'){
-        createPieMap(get_checked_activities())
-    }else{
-        createPTMap(last_activity_pt)
+        resizePieMap()
     }
-
   // handle_Smap_size();
 
   /*	$("#map-container").children().remove();
