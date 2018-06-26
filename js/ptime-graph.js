@@ -1,6 +1,7 @@
-let GRAPHm = 50, LABELSm = 20
-let CIRCLESr = 10
+let GRAPHm = 60, LABELSm = 20
+let CIRCLESr = 110
 let trDuration = 500
+let padding = 30
 
 let dropdownList = d3.select('#dropdown-list-pt')
 let GRAPHsvg
@@ -10,8 +11,8 @@ let GRAPHh = 600, GRAPHw = 600
 function createNewGRAPHsvg () {
   GRAPHh = $('#activity-graph-pt').width()
 	GRAPHw = GRAPHh
-	CIRCLESr = GRAPHh / 60
-	GRAPHm = GRAPHh / 12
+	CIRCLESr = GRAPHh / 50
+	GRAPHm = GRAPHh / 8
 	LABELSm = GRAPHh / 30
 
     if(document.getElementById("activity-scatter-pt") == null){
@@ -36,7 +37,7 @@ function getParticipationTime (country, activity) {
   let str = String(dataset.get(country).get(activity).participationTime)
     let splittedStr = str.split(':')
     let hh = parseInt(splittedStr[0]), mm = parseInt(splittedStr[1])
-    return hh + mm / 60.0
+    return hh *60.0 + mm
 }
 
 
@@ -58,6 +59,9 @@ function plotGraphActivity (activity) {
         }
   }
 
+  console.log("ptime", pTimes, d3.extent(pTimes))
+    console.log('pRate', pRates, d3.extent((pRates)))
+
   graphXScale = d3.scaleLinear()
     .domain(d3.extent(pRates))
     .range([GRAPHm, GRAPHw - GRAPHm])
@@ -66,6 +70,49 @@ function plotGraphActivity (activity) {
     .domain(d3.extent(pTimes))
     .range([GRAPHh - GRAPHm, GRAPHm])
 
+
+    // Define X axis
+    var xAxis = d3
+        .axisBottom()
+        .scale(graphXScale)
+        .ticks(6)
+        .tickFormat(d=>  d + "%")
+
+// Define Y axis
+    var yAxis = d3
+        .axisLeft()
+        .scale(graphYScale)
+        .ticks(6)
+        .tickFormat(nbToString)
+
+
+    if(document.getElementById("x_axis_scatter") == null){
+        GRAPHsvg.append('g')
+            .attr('id', 'x_axis_scatter')
+            .attr('transform', 'translate(0, ' + (GRAPHh - GRAPHm) + ')')
+            .call(xAxis)
+
+        GRAPHsvg.append('g')
+            .attr('id', 'y_axis_scatter')
+            .attr("transform", "translate(" + GRAPHm + ",0)")
+            .call(yAxis)
+    }else{
+        console.log("update axis")
+        GRAPHsvg.select("#x_axis_scatter")
+            .transition()
+            .duration(trDuration)
+            .attr('transform', 'translate(0, ' + (GRAPHh - GRAPHm) + ')')
+            .call(xAxis)
+
+        GRAPHsvg.select("#y_axis_scatter")
+            .transition()
+            .duration(trDuration)
+            .attr("transform", "translate(" + GRAPHm + ",0)")
+            .call(yAxis)
+
+    }
+
+
     /** Create new circles**/
     GRAPHsvg.selectAll('circle')
     .data(participants, d=> d)
@@ -73,9 +120,23 @@ function plotGraphActivity (activity) {
     .append('circle')
     // .attr('id', (p) => p)
     .attr('r', CIRCLESr)
-        .attr('country', d=>d)
+        .attr('opacity', "0.8")
+        .attr('country', d=>d.replace(/\s/g,"_"))
     .attr('cx', (p) => graphXScale(getParticipationRate(p, activity)))
     .attr('cy', (p) => graphYScale(getParticipationTime(p, activity)))
+        .on("mouseover", function(d,i){
+          console.log("this", typeof(this), this[country],d,i,d3.selectAll("[country=" + d +"]"))
+          d3.selectAll("[country=" + d +"]").attr('fill', 'orange')
+        })
+        .on("mouseout", function(d,i){
+            d3.selectAll("path[country=" + d +"]")
+                // .select("path")
+                .attr('fill', d => scaleC(pTime[d]))
+
+            d3.selectAll("circle[country=" + d +"]")
+            // .select("path")
+                .attr('fill', 'black')
+        })
         .append("title")
         .text(d=>d)
 
@@ -113,33 +174,6 @@ function plotGraphActivity (activity) {
             let y = graphYScale(getParticipationTime(p, activity))
             return y + LABELSm
         })
-
-
-
-    if(document.getElementById("x_axis_scatter") == null){
-        GRAPHsvg.append('g')
-            .attr('id', 'x_axis_scatter')
-            .attr('transform', 'translate(0, ' + (GRAPHh - GRAPHm) + ')')
-            .call(d3.axisTop(graphXScale))
-
-        GRAPHsvg.append('g')
-            .attr('id', 'y_axis_scatter')
-            .call(d3.axisRight(graphYScale))
-    }else{
-        GRAPHsvg.select(".x_axis_scatter")
-            .transition()
-            .duration(trDuration)
-            .attr('transform', 'translate(0, ' + (GRAPHh - GRAPHm) + ')')
-            .call(d3.axisTop(graphXScale))
-
-        GRAPHsvg.select(".y_axis_scatter")
-            .transition()
-            .duration(trDuration)
-            .call(d3.axisRight(graphYScale))
-
-    }
-
-
 
 
 }

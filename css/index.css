@@ -13,7 +13,7 @@ body {
 #side_navbar
 {
 	position:fixed;
-	width:300px;
+	width:400px;
 	margin:0px;
 	height:100%;
 	background-color: #f1f1f1;
@@ -23,7 +23,7 @@ body {
 
 #page_content
 {
-	margin-left:305px;
+	margin-left:405px;
 	height: 98vh;
 }
 
@@ -76,18 +76,14 @@ button{
 	overflow:hidden;
 }
 
-.country_path:hover {
-	fill:orange;
-	    -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
-	    filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
-}
+/*.country_path:hover {*/
+	/*fill:orange;*/
+	    /*-webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));*/
+	    /*filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));*/
+/*}*/
 
 
-.country_path:hover {
-	fill:orange;
-	-webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
-	filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
-}
+
 
 .arc:hover {
 	fill:gold;

@@ -32,7 +32,7 @@ function getActivity () {
 
 function getColor (d) {
   if (isNaN(pTime[d.properties.NAME])) {
-    return 'white'
+    return '#BDBDBD'
   } else {
     return scaleC(pTime[d.properties.NAME])
   }
@@ -49,7 +49,7 @@ function getSTColor (d) {
   }
 
   if (isNaN(val) || i === sTimeList.length) {
-    return 'white'
+    return '#BDBDBD'
   } else {
     return scaleC(val)
   }
@@ -181,7 +181,7 @@ function createPieMap (activities) {
     .append('path')
     .attr('class', 'country_path')
     .attr('d', path)
-    .attr('country', d => d.properties.NAME)
+    .attr('country', d => d.properties.NAME.replace(" ", "_"))
     .attr('stroke', 'black')
     .attr('stroke-width', 1)
     .attr('fill', d => getSTColor(d))
@@ -194,9 +194,22 @@ function createPieMap (activities) {
   mapContainer
     .selectAll('.country_path')
     .data(mapData.features, d => d.properties.NAME)
+      .on("mouseover", function(d,i){
+          d3.selectAll("[country=" + d.properties.NAME.replace(/\s/g,"_") +"]").attr('fill', 'orange')
+      })
+      .on("mouseout", function(d,i){
+          d3.selectAll("path[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
+          // .select("path")
+              .attr('fill', d => getSTColor(d))
+
+          d3.selectAll("circle[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
+          // .select("path")
+              .attr('fill', 'black')
+      })
     .transition()
     .duration(500)
     .attr('fill', d => getSTColor(d))
+
 
   mapContainer
     .selectAll('.country_title')
@@ -219,7 +232,7 @@ function createPieMap (activities) {
     .enter()
     .append('g')
     .attr('class', 'pie')
-    .attr('country', d => d.country)
+    .attr('country', d => d.country.replace(" ", "_"))
     .attr('transform', d => {
       const centroid = path.centroid(d.feature)
       return `translate(${centroid[0]}, ${centroid[1]})`
@@ -357,6 +370,7 @@ function updatePieMapScale (activities) {
 }
 
 function pRateTips (d) {
+    console.log("pRateTips", d, pTime[d.properties.NAME])
   let country = d.properties.NAME
   if (country in pRate) {
     return d.properties.NASME + '\nParticipate Rate:\n' + pRate[country] + '%'
@@ -509,10 +523,11 @@ function createPTMap (activity) {
   countries_enter.append('path')
     .attr('class', 'country_path')
     .attr('d', path)
-    .attr('country', (d) => d.properties.NAME)
+    .attr('country', (d) => d.properties.NAME.replace(" ", "_"))
     .attr('stroke', 'black')
     .attr('stroke-width', 1)
     .attr('fill', d => getColor(d))
+
 
 
   countries_enter.append('title')
@@ -521,7 +536,18 @@ function createPTMap (activity) {
 
   mapContainer.selectAll('.country_path')
     .data(mapData.features, d => d.properties.NAME)
-    .transition()
+      .on("mouseover", function(d,i){
+          d3.selectAll("[country=" + d.properties.NAME.replace(/\s/g,"_") +"]").attr('fill', 'orange')
+      })
+      .on("mouseout", function(d,i){
+          d3.selectAll("path[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
+          // .select("path")
+              .attr('fill', d => scaleC(pTime[d.properties.NAME.replace(/\s/g,"_")]))
+
+          d3.selectAll("circle[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
+          // .select("path")
+              .attr('fill', 'black')
+      }).transition()
     .duration(500)
     .attr('fill', d => getColor(d))
 
@@ -546,7 +572,7 @@ function createPTMap (activity) {
 function pRateTips(d) {
   let country = d.properties.NAME
   if (country in pRate) {
-    return d.properties.NAME + '\nParticipate Rate:\n' + pRate[country] + '%'
+    return d.properties.NAME + '\nParticipate Rate:' + pRate[country] + '%' + '\nParticipate Time:' + nbToString(pTime[country])
   } else {
     return d.properties.NAME + '\nParticipate Rate:' + 0
   }
