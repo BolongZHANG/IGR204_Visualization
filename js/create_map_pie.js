@@ -108,10 +108,7 @@ function loadMap (dataset, mode) {
   d3.json('data/europe.json', function (error, map_json) {
     mapData = map_json
     initSpList()
-	if( mode == "ts" )
-		createPieMap(get_checked_activities())
-	else
-		createPTMap(last_activity_pt)
+    if (mode == 'ts') { createPieMap(get_checked_activities()) } else { createPTMap(last_activity_pt) }
   })
 }
 
@@ -133,19 +130,22 @@ function initSpList () {
 // put all logic in a nice reusable function
 function createPieMap (activities) {
   //   activities = ['Personal care', 'Other and/or unspecified personal care']
+  let width = $('#page_content').width()
+  let height = $('#page_content').height()
+  svgMap = d3.select('#map-container').attr('width', width).attr('height', height)
+
   getSpentTimeList(activities)
   updatePieMapScale(activities)
   updateLegend()
   // use viewBox attributes instead of width + height
 
-  let width = $('#map-container').width()
-  let height = $('#map-container').height()
+  console.log('Map size', width, height)
 
   let projection = d3
     .geoMercator()
     // d3's 'fitSize' magically sizes and positions the map for you
-    .fitSize([width, height], mapData)
-
+    // .fitSize([width, height], mapData)
+     .fitSize([width, height], mapData)
   // this is the function that generates position data from the projection
   let path = d3.geoPath().projection(projection)
 
@@ -166,15 +166,23 @@ function createPieMap (activities) {
     .attr('stroke-width', 1)
     .attr('fill', d => getSTColor(d))
 
-  //   countries_enter.append('title')
-  //     .text((d) => pRateTips(d))
+  countries_enter
+    .append('title')
+    .attr('class', 'country_title')
+    .text((d) => d.properties.NAME)
 
   mapContainer
     .selectAll('.country_path')
     .data(mapData.features, d => d.properties.NAME)
     .transition()
-    .duration(1000)
+    .duration(500)
     .attr('fill', d => getSTColor(d))
+    .attr('d', path)
+
+  mapContainer
+    .selectAll('.country_title')
+    .data(mapData.features, d => d.properties.NAME)
+    .text(d => d.properties.NAME)
 
   //   countries_enter.append('title')
   //     .text((d) => pRateTips(d))
@@ -188,7 +196,6 @@ function createPieMap (activities) {
 
   /** ************** Draw pie   ************************/
   let pie = d3.pie().value(d => {
-    console.log('pie_layout', d)
     return d.value
   })
 
@@ -217,6 +224,12 @@ function createPieMap (activities) {
 
   points = pieContainer.selectAll('.pie').data(sTimeList, d => d.country)
 
+    points.transition().duration(500).attr('transform', d => {
+        const centroid = path.centroid(d.feature)
+        return `translate(${centroid[0]}, ${centroid[1]})`
+    })
+
+
   let allPies = points.selectAll('.arc').data(d => {
     d.values.map(t => {
       t.radius = (0.618 * Math.sqrt(path.area(d.feature))) / 2
@@ -229,21 +242,21 @@ function createPieMap (activities) {
     .enter()
     .append('path')
     .attr('class', 'arc')
-    .attr('title', d => d.data.activity)
-    .attr('class', 'arc')
     .attr('opacity', 1)
     .attr('fill', d => pieScale(d.data.activity))
-    .transition()
+  pieArcs.transition()
     .duration(500)
     .attrTween('d', d => arcTween(d, arc))
 
-  allPies
+  pieArcs
     .append('title')
-    .text(d => d.data.activity)
+    .text(d => {
+      return pieTips(d)
+    }
+    )
 
   allPies
     .attr('fill', function (d, i) {
-      console.log('fill new comer', d)
       return pieScale(d.data.activity)
     })
     .transition()
@@ -252,103 +265,21 @@ function createPieMap (activities) {
 
   //
   allPies.exit().remove()
-  //     .transition()
-  //     .duration(1000)
-  //     .attr('fill', function (d, i) {
-  //       return pieScale(d)
-  //     })
-  //     .attrTween('d', d => arcTween(d, arc))
-
-  //   let pies = points.selectAll('.pie')
-  //     .data(d => {
-  //       console.log('pies', d)
-  //       return pie(d.values)
-  //     }).enter()
-  //     .append('g')
-  //     .attr('class', 'arc')
-
-  //   pies.append('path')
-  //     .attr('d', arc)
-  //     .attr('fill', function (d, i) {
-  //       console.log('pie_color', d, d.data.activity, pieScale(d.data.activity))
-  //       return pieScale(d.data.activity)
-  //     })
-
-  //   points = pieContainer.selectAll('.pie')
-  //     .data(sTimeList, d => d.country)
-  //     .attr('transform', (d) => {
-  //       const centroid = path.centroid(d.feature)
-  //       return `translate(${centroid[0]}, ${centroid[1]})`
-  //     })
-
-  //   let pies_enter = points.selectAll('.pie')
-  //     .data(d => {
-  //       let bounds = path.bounds(d.feature)
-  //       let max1 = Math.min(Math.abs(bounds[0][0] - bounds[1][0]), Math.abs(bounds[0][1] - bounds[1][1]))
-  //       let radius = Math.sqrt(path.area(d.feature))
-  //       console.log('projection', radius, max1, path.area(d.feature), d.feature.properties.NAME)
-  //       d.values.map(d => {
-  //         d.radius = 0.618 * radius / 2
-  //         return d
-  //       })
-
-  //       return pie(d.values)
-  //     })
-
-  // valide code
-
-  //   pies_enter.enter().append('path')
-  //     .attr('d', d => {
-  //       return arc(d)
-  //     })
-  //     .attr('fill', function (d, i) {
-  //       return pieScale(d.data.activity)
-  //     })
-
-  //   pies_enter
-  //     .exit()
-  //     .transition()
-  //     .duration(500)
-  //     .remove()
-  //   pies_enter
-  //     .transition()
-  //     .duration(1000)
-  //     .attr('fill', function (d) {
-  //       return pieScale(d.data.activity)
-  //     })
-  //     .attrTween('d', arcTween)
 
   let zoom = d3.zoom().scaleExtent([1, 10]).on('zoom', zoomed)
 
-  d3.select('#map').call(zoom)
+  d3.select('#map-container').call(zoom)
 }
 
 function zoomed () {
   d3.select('#map').attr('transform',
     'translate(' + d3.event.transform.x + ',' + d3.event.transform.y + ')scale(' + d3.event.transform.k + ')')
 
+  d3.selectAll('path').attr('stroke-width', 1 / d3.event.transform.k)
+
   d3.select('#pies').attr('transform',
     'translate(' + d3.event.transform.x + ',' + d3.event.transform.y + ')scale(' + d3.event.transform.k + ')')
 }
-
-//   // append labels
-//   pieContainer
-//     .selectAll('.pie')
-//     .data(mapData.features, d =>  d.properties.NAME)
-//     .enter()
-//     .append('circle')
-//     .attr('name', d=>{
-//       console.log(d.properties.NAME)
-//       return d.properties.NAME
-//     })
-//     .attr("r", 5)
-//     .attr('class', 'pie')
-//     .attr('fill', 'yellow')
-//     .attr('transform', (d)=> {
-//       const centroid = path.centroid(d)
-//       return `translate(${centroid[0]}, ${centroid[1]})`
-//     })
-// }
 
 function updateLegend () {
   var legend = d3.legendColor()
@@ -545,6 +476,10 @@ function nbToString (min) {
 
 // put all logic in a nice reusable function
 function createPTMap (activity) {
+    let width = $('#page_content').width()
+    let height = $('#page_content').height()
+    svgMap = d3.select('#map-container').attr('width', width).attr('height', height)
+
   /** Remove all pie chart***/
   d3.selectAll('.arc')
     .transition()
@@ -554,9 +489,6 @@ function createPTMap (activity) {
 
   updateMapScale(activity)
   // use viewBox attributes instead of width + height
-
-  let width = $('#map-container').width()
-  let height = $('#map-container').height()
 
   console.log('Create map:' + activity, 'width', width, 'height', height)
 
@@ -583,17 +515,21 @@ function createPTMap (activity) {
     .attr('stroke-width', 1)
     .attr('fill', d => getColor(d))
 
+
   countries_enter.append('title')
+    .attr('class', 'country_title')
     .text((d) => pRateTips(d))
 
   mapContainer.selectAll('.country_path')
     .data(mapData.features, d => d.properties.NAME)
     .transition()
-    .duration(1000)
+    .duration(500)
     .attr('fill', d => getColor(d))
+      .attr('d', path)
 
-  countries_enter.append('title')
-    .text((d) => pRateTips(d))
+  mapContainer.selectAll('.country_title')
+    .data(mapData.features, d => d.properties.NAME)
+    .text(d => pRateTips(d))
 
   mapContainer.selectAll('.country')
     .data(mapData.features, d => d.properties.NAME)
@@ -602,6 +538,11 @@ function createPTMap (activity) {
     .attr('fill', d => getColor(d))
 
   updateLegend()
+
+
+    let zoom = d3.zoom().scaleExtent([1, 10]).on('zoom', zoomed)
+
+    d3.select('#map-container').call(zoom)
 }
 
 function pRateTips (d) {
@@ -613,4 +554,8 @@ function pRateTips (d) {
     return d.properties.NAME + '\nParticipate Rate:' + 0
   }
   //
+}
+
+function pieTips (d) {
+  return d.data.activity + '\n' + nbToString(d.value)
 }

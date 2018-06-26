@@ -1,74 +1,72 @@
-var currentMode = "ts";
+var currentMode = 'ts';
 
-var last_activity_pt = "Sleep";
+var last_activity_pt = 'Sleep';
 
 /* selectected activities fro time spent */
-var selectedActivitiesTs = [];
+var selectedActivitiesTs = []
 
-var time_spent_li = document.getElementById("time_spent_li");
-var participation_time_li = document.getElementById("participation_time_li");
+var time_spent_li = document.getElementById('time_spent_li')
+var participation_time_li = document.getElementById('participation_time_li')
 
-window.onload = init_index_html;
+window.onload = init_index_html
 
-time_spent_li.addEventListener("click" , function(){
-	time_spent_li.setAttribute("class" , "active");
-	participation_time_li.classList.remove("active");
+time_spent_li.addEventListener('click', function () {
+  time_spent_li.setAttribute('class', 'active')
+	participation_time_li.classList.remove('active')
 	
-	document.getElementById("div-dropdown-ts").
-		setAttribute("style" ,"display:block");
-	document.getElementById("div-dropdown-pt").
-		setAttribute("style" ,"display:none");
+	document.getElementById('div-dropdown-ts')
+		.setAttribute('style' , 'display:block')
+	document.getElementById('div-dropdown-pt')
+		.setAttribute('style' , 'display:none')
 		
-	createPieMap(get_checked_activities());
-	currentMode = "ts";
-});
+	createPieMap(get_checked_activities())
+	currentMode = 'ts';
+})
 
 
-participation_time_li.addEventListener("click" , function(){
-	participation_time_li.setAttribute("class" , "active");
-	time_spent_li.classList.remove("active");
+participation_time_li.addEventListener('click', function () {
+  participation_time_li.setAttribute('class', 'active')
+	time_spent_li.classList.remove('active')
 	
-	document.getElementById("div-dropdown-ts").
-		setAttribute("style" ,"display:none");
-	document.getElementById("div-dropdown-pt").
-		setAttribute("style" ,"display:block");
+	document.getElementById('div-dropdown-ts')
+		.setAttribute('style','display:none')
+	document.getElementById('div-dropdown-pt')
+		.setAttribute('style' , 'display:block')
 	on_body_resize()
-	createPTMap(last_activity_pt);
-	plotGraphActivity(last_activity_pt);
-	currentMode = "pt"
-	
-});
+  createPTMap(last_activity_pt)
+	plotGraphActivity(last_activity_pt)
+	currentMode = 'pt'
+})
 
-function add_activity_ts(name)
-{
-	var colDiv = '<div style="white-space:nowrap;overflow:hidden" class="col-md-9">' + name + '</div>';
-	var check = '<div class="col-md-1"><input type="checkbox" checked></div>';
-	var bin = '<div class="col-md-1"><span class="fa fa-trash"></span></div>';
+function add_activity_ts (name) {
+  var colDiv = '<div style="white-space:nowrap;overflow:hidden" class="col-md-9">' + name + '</div>'
+	var check = '<div class="col-md-1"><input type="checkbox" checked></div>'
+	var bin = '<div class="col-md-1"><span class="fa fa-trash"></span></div>'
 	
-	var div = '<div class="row selected_activities_list_ts">' + colDiv + check + bin + '</div>';
-	$("#div-dropdown-ts").prepend(div);
+	var div = '<div class="row selected_activities_list_ts">' + colDiv + check + bin + '</div>'
+	$('#div-dropdown-ts').prepend(div)
 	
-	var lastActivities = $("#div-dropdown-ts").children()[0];
-	selectedActivitiesTs.push( lastActivities );
+	var lastActivities = $('#div-dropdown-ts').children()[0]
+	selectedActivitiesTs.push(lastActivities)
 	
 	// click on trash
-	lastActivities.children[2].children[0].addEventListener("click" , function(event){
-		var element = $(event.target); // cast to jquery
+	lastActivities.children[2].children[0].addEventListener('click', function (event) {
+    var element = $(event.target) // cast to jquery
 		
-		for( var i=0 ; i < selectedActivitiesTs.length ; i++ )
-			if( element.parent().parent().children()[0].innerHTML == selectedActivitiesTs[i].children[0].innerHTML )
-				selectedActivitiesTs.splice(i,1);
-			
-		element.parent().parent().remove();
+		for (var i = 0; i < selectedActivitiesTs.length; i++)
+      {if( element.parent().parent().children()[0].innerHTML == selectedActivitiesTs[i].children[0].innerHTML )
+				selectedActivitiesTs.splice(i,1);}
+
+    element.parent().parent().remove()
 		
-		createPieMap( get_checked_activities() )
-		createGrapheTimeSpent(get_checked_activities());
-	});
+		createPieMap(get_checked_activities())
+    createGrapheTimeSpent(get_checked_activities())
+	})
 	
 	// click on checkbox
-	lastActivities.children[1].children[0].addEventListener("click" , function(event){
-		console.log( get_checked_activities() );
-	});	
+	lastActivities.children[1].children[0].addEventListener('click', function (event) {
+    console.log(get_checked_activities())
+	})	
 }
 
 /* returns all the checked activities among the selected activities */
@@ -118,11 +116,11 @@ function add_activity_to_selected_activities (activity) {
     }
   }
 
-  if (!isInSelectedActivities) 
-  { 
-	add_activity_ts(activity) ; 
-	createPieMap( get_checked_activities() );
-	createGrapheTimeSpent(get_checked_activities());	
+  if (!isInSelectedActivities)
+  {
+    add_activity_ts(activity)  
+	createPieMap(get_checked_activities())
+	createGrapheTimeSpent(get_checked_activities())	
 	}
 }
 
@@ -150,7 +148,7 @@ function on_itemClicked_list_activities_pt () {
   var divCaret = '<div class="col-md-3"></span><span class="caret"></span></div>'
 
   button.innerHTML = '<div class="row">' + divActivity + divCaret + '</div>'
-last_activity_pt = activity;
+  last_activity_pt = activity
   /* graph participation time / participation rate */
 
   plotGraphActivity(activity)
@@ -161,8 +159,8 @@ function init_index_html () {
   document.getElementById('div-dropdown-pt')
     .setAttribute('style', 'display:none')
 
-	add_activity_to_selected_activities("Sleep");
-  handle_map_size();
+  add_activity_to_selected_activities('Sleep')
+  handle_map_size()
 	
   var activity = 'Sleep'
   var button = document.getElementById('button_activity_pt')
@@ -173,34 +171,38 @@ function init_index_html () {
   button.innerHTML = '<div class="row">' + divActivity + divCaret + '</div>'
 }
 
-function handle_map_size()
-{
-	var width = $("#map-container").parent().width();
-	var height = $("#map-container").parent().height();
-	
-	if( Math.min( width , height ) == height )
-	{
-		$("#map-container").attr("width" , height );
-		$("#map-container").attr("height" , height );
-		$("#map-container").children().first().attr("height" , height );
-		$("#map-container").children().first().attr("width" , height );
-		var diff = width - height;
-		$("#map-container").attr("style" , "margin-left:" +  (diff / 2) + ";margin-right:" + (diff / 2) );
-	}
-	else
-	{
-		$("#map-container").attr("width" , width );
-		$("#map-container").attr("height" , width );
-		$("#map-container").children().first().attr("height" , width );
-		$("#map-container").children().first().attr("width" , width );
-		var diff = height - width;
-		$("#map-container").attr("style" , "margin-top:" +  (diff / 2) + ";margin-bottom:" + (diff / 2) );
+function handle_map_size () {
+  var width = $('#page-content').parent().width()
+	var height = $('#page-content').parent().height()
+
+	if (Math.min(width, height) == height) {
+    $('#map-container').attr('width', width)
+		$('#map-container').attr('height', height)
+		// $('#map-container').children().first().attr('height', height)
+		// $('#map-container').children().first().attr('width', height)
+		//var diff = width - height
+		//$('#map-container').attr('style', 'margin-left:' + (diff / 2) + ';margin-right:' + (diff / 2))
+	} else {
+    $('#map-container').attr('width', width)
+		$('#map-container').attr('height', width)
+		// $('#map-container').children().first().attr('height', width)
+		$('#map-container').children().first().attr('width', width)
+		var diff = height - width
+		$('#map-container').attr('style', 'margin-top:' + (diff / 2) + ';margin-bottom:' + (diff / 2))
 	}
 }
 
-function on_body_resize(){
-	/*handle_map_size();
-	$("#map-container").children().remove();
+function on_body_resize () {
+
+    if( currentMode == 'ts'){
+        createPieMap(get_checked_activities())
+    }else{
+        createPTMap(last_activity_pt)
+    }
+
+  // handle_Smap_size();
+
+  /*	$("#map-container").children().remove();
 	mapContainer = svgMap
   .append('g')
   .attr('id', 'map')
@@ -208,7 +210,7 @@ function on_body_resize(){
 	pieContainer = svgMap
   .append('g')
   .attr('id', 'pies')
-  loadMap(dataset, currentMode);*/
+  loadMap(dataset, currentMode); */
   /*handle_map_size();
-  createPieMap(get_checked_activities());*/
+  createPieMap(get_checked_activities()); */
 }

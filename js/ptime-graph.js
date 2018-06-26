@@ -79,4 +79,7 @@ function plotGraphActivity (activity) {
     GRAPHsvg.append('g')
     .attr('class', 'y axis')
     .call(d3.axisRight(graphYScale))
+
+
+
 }

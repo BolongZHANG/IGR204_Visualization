@@ -70,3 +70,26 @@ body {
 button{
 	overflow:hidden;
 }
+
+.country_path:hover {
+	fill:orange;
+	    -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+	    filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+}
+
+
+.country_path:hover {
+	fill:orange;
+	-webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+}
+
+.arc:hover {
+	fill:gold;
+	-webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+}
+
+.country_path{
+	troke-linejoin:"round"
+}

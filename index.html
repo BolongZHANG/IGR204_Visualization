@@ -75,7 +75,12 @@
 	</div>
 	
 	<div id="page_content">
-		<svg id="map-container"> </svg>
+		<svg id="map-container" width="100%" height="100%">
+			
+	<filter id="blur-filter" x="-1" y="-1" width="200" height="200">
+		<feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+	</filter>
+			</svg>
 	</div>
 	
 	<!-- Project scripts-->
