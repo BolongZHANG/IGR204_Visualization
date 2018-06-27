@@ -94,6 +94,9 @@ function createGrapheTimeSpent(Checked_activities) {
           // .select("path")
               .attr('fill', d => getSTColor(country))
 
+          d3.selectAll("circle[country=" + country +"]")
+              .attr('fill', 'black')
+
           d3.selectAll("rect[country=" + country +"]")
               .attr('fill', 'blue')
       })

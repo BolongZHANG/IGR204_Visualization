@@ -205,6 +205,10 @@ function createPieMap (activities) {
           d3.selectAll("rect[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
           // .select("path")
               .attr('fill', 'blue')
+
+          d3.selectAll("circle[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
+          // .select("path")
+              .attr('fill', 'black')
       })
     .transition()
     .duration(500)
@@ -547,6 +551,10 @@ function createPTMap (activity) {
           d3.selectAll("circle[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
           // .select("path")
               .attr('fill', 'black')
+
+          d3.selectAll("rect[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
+          // .select("path")
+              .attr('fill', 'blue')
       }).transition()
     .duration(500)
     .attr('fill', d => getColor(d))

@@ -134,6 +134,10 @@ function plotGraphActivity (activity) {
             d3.selectAll("circle[country=" + d.replace(/\s/g,"_") +"]")
             // .select("path")
                 .attr('fill', 'black')
+
+            d3.selectAll("rect[country=" + d.replace(/\s/g,"_") +"]")
+            // .select("path")
+                .attr('fill', 'blue')
         })
         .append("title")
         .text(d=>d)
