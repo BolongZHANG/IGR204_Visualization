@@ -59,8 +59,7 @@ function plotGraphActivity (activity) {
         }
   }
 
-  console.log("ptime", pTimes, d3.extent(pTimes))
-    console.log('pRate', pRates, d3.extent((pRates)))
+
 
   graphXScale = d3.scaleLinear()
     .domain(d3.extent(pRates))
@@ -125,15 +124,14 @@ function plotGraphActivity (activity) {
     .attr('cx', (p) => graphXScale(getParticipationRate(p, activity)))
     .attr('cy', (p) => graphYScale(getParticipationTime(p, activity)))
         .on("mouseover", function(d,i){
-          console.log("this", typeof(this), this[country],d,i,d3.selectAll("[country=" + d +"]"))
-          d3.selectAll("[country=" + d +"]").attr('fill', 'orange')
+          d3.selectAll("[country=" + d.replace(/\s/g,"_") +"]").attr('fill', 'orange')
         })
         .on("mouseout", function(d,i){
-            d3.selectAll("path[country=" + d +"]")
+            d3.selectAll("path[country=" + d.replace(/\s/g,"_") +"]")
                 // .select("path")
                 .attr('fill', d => scaleC(pTime[d]))
 
-            d3.selectAll("circle[country=" + d +"]")
+            d3.selectAll("circle[country=" + d.replace(/\s/g,"_") +"]")
             // .select("path")
                 .attr('fill', 'black')
         })

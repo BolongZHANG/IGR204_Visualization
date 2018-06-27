@@ -43,7 +43,7 @@ function getSTColor (d) {
   let i = 0
   for (i = 0; i < sTimeList.length; i++) {
     // console.log(sTimeList[i].country, d.properties.NAME, sTimeList[i].total)
-    if (sTimeList[i].country !== d.properties.NAME) continue
+    if (sTimeList[i].country !== d) continue
     val = sTimeList[i].total
     break
   }
@@ -184,7 +184,7 @@ function createPieMap (activities) {
     .attr('country', d => d.properties.NAME.replace(" ", "_"))
     .attr('stroke', 'black')
     .attr('stroke-width', 1)
-    .attr('fill', d => getSTColor(d))
+    .attr('fill', d => getSTColor(d.properties.NAME))
 
   countries_enter
     .append('title')
@@ -200,15 +200,15 @@ function createPieMap (activities) {
       .on("mouseout", function(d,i){
           d3.selectAll("path[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
           // .select("path")
-              .attr('fill', d => getSTColor(d))
+              .attr('fill', d => getSTColor(d.properties.NAME))
 
-          d3.selectAll("circle[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
+          d3.selectAll("rect[country=" + d.properties.NAME.replace(/\s/g,"_") +"]")
           // .select("path")
-              .attr('fill', 'black')
+              .attr('fill', 'blue')
       })
     .transition()
     .duration(500)
-    .attr('fill', d => getSTColor(d))
+    .attr('fill', d => getSTColor(d.properties.NAME))
 
 
   mapContainer
@@ -222,7 +222,7 @@ function createPieMap (activities) {
     .data(mapData.features, d => d.properties.NAME)
     .transition()
     .duration(1000)
-    .attr('fill', d => getSTColor(d))
+    .attr('fill', d => getSTColor(d.properties.NAME))
 
   /** ************** Draw pie   ************************/
 

@@ -1,3 +1,4 @@
+let data
 function format_liste(time) {
   if (time === 0) {
     return [0,0];
@@ -41,7 +42,7 @@ function createGrapheTimeSpent(Checked_activities) {
      return (L2[1][1]+L2[1][0]*60-L1[1][1]-L1[1][0]*60);
   });
 
-  var data = []
+  data = []
   for (var i = 0; i < data0.length; i++) {
     if ((data0[i][1][0] != 0)&&(data0[i][1][1] != 0)) {
       data.push([data0[i][0],format_time(data0[i][1])]);
@@ -79,12 +80,29 @@ function createGrapheTimeSpent(Checked_activities) {
   svg.append("g")
     .attr("transform", "translate("+margin.left+", 0)")
     .call(yAxis);
+
   svg.selectAll(".bar")
-    .data(data)
+    .data(data, d=> d=>d[0])
     .enter().append("rect")
-    .attr("style", "fill:rgb(0,0,255)")
+      .attr("country", d=>d[0].replace(/\s/g, "_"))
+      .on("mouseover", function(d,i){
+          d3.selectAll("[country=" +d[0].replace(/\s/g, "_") +"]").attr('fill', 'orange')
+      })
+      .on("mouseout", function(d,i){
+          let country = d[0].replace(/\s/g, "_")
+          d3.selectAll("path[country=" + country +"]")
+          // .select("path")
+              .attr('fill', d => getSTColor(country))
+
+          d3.selectAll("rect[country=" + country +"]")
+              .attr('fill', 'blue')
+      })
+    .attr("fill", "rgb(0,0,255)")
     .attr("x", d => xscale(d[0]))
     .attr("y", d => yscale(d[1]))
     .attr("width", xscale.bandwidth())
-    .attr("height", d => (height+margin.top-yscale(d[1])));
+    .attr("height", d => (height+margin.top-yscale(d[1])))
+      .append("title").text(d=>{
+          return d[1].toTimeString().split(" ")[0]
+n  })
 }
